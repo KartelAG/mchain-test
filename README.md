@@ -11,6 +11,7 @@ python3.6 ./pyapp.py > ./log.txt
 
 ### txCheck.py
 **Файл ***"log.txt"***, сгенерированный pyapp.py должен размещаться в одном каталоге со скриптом**
+
 Запуск: 
 ```txCheck
 python3.6 ./txCheck.py
