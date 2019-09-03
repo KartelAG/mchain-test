@@ -2,7 +2,7 @@
 
 from web3 import Web3
 
-logFile = open("log.txt", "r")
+logFile = open("log-2019-08-10.txt", "r")
 logFileReader = logFile.readlines()
 
 bootNodeIP = '192.168.201.12'

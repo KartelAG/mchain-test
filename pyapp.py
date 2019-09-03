@@ -60,4 +60,5 @@ while num < 1000:
       print(','.join((str(time.asctime()), str(value), selectedIPFrom, selectedAccountFrom, str(balanceFrom), selectedAccountTo, str(balanceTo), txHash.hex())))
     except:
       print(time.asctime(), "##############some error has been occured!################")
-  time.sleep(random.randint(0,10))
+  #time.sleep(random.randint(0,2))
+  time.sleep(0.200)
