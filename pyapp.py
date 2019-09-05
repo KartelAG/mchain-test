@@ -26,7 +26,7 @@ def sendTransaction(ip, addrFrom, addrTo, amount):
   tempw3 = Web3(Web3.HTTPProvider(connectionString))
   tempw3.middleware_stack.inject(geth_poa_middleware, layer=0)
   tempw3.personal.unlockAccount(addrFrom, '')
-  return tempw3.eth.sendTransaction({'from': addrFrom, 'to': addrTo, 'value': amount})
+  return tempw3.eth.sendTransaction({'from': addrFrom, 'to': addrTo, 'value': amount, 'gasPrice': 18000000000})
 
 w3 = Web3(Web3.HTTPProvider("http://"+bootNodeIP+":20000"))
 accountsByIP[bootNodeIP] = w3.eth.accounts
@@ -39,7 +39,7 @@ for i in accountsByIP:
   accountsByIP[i] = getAccountsFromNodeIP(i)
 
 num = 0
-while num < 1000:
+while num < 10000:
   num = num + 1
   txHash = ''
   print("Generating transaction N", num)
@@ -49,7 +49,7 @@ while num < 1000:
   selectedIPTo = random.choice(list(accountsByIP.keys()))
   selectedAccountTo = random.choice(accountsByIP[selectedIPTo])
 
-  value = random.randint(10,100)
+  value = Web3.toWei(random.randint(1,10), "wei")
 
   balanceFrom = getBalance(selectedIPFrom, selectedAccountFrom)
   balanceTo = getBalance(selectedIPTo, selectedAccountTo)
@@ -60,5 +60,5 @@ while num < 1000:
       print(','.join((str(time.asctime()), str(value), selectedIPFrom, selectedAccountFrom, str(balanceFrom), selectedAccountTo, str(balanceTo), txHash.hex())))
     except:
       print(time.asctime(), "##############some error has been occured!################")
-  #time.sleep(random.randint(0,2))
-  time.sleep(0.200)
+  time.sleep(random.randint(0,2))
+ # time.sleep(0.200)
